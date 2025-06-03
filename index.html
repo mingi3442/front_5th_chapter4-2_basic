@@ -71,16 +71,56 @@
             <li><a href="about.html">About us</a></li>
             <li><a href="index.html#best-sellers-section">Best Sellers</a></li>
             <li><a href="index.html#newsletter-section">Newsletter</a></li>
-            <li class="menu-icon"><img src="images/menu_icon.png" /></li>
+            <li class="menu-icon">
+              <picture>
+                <source srcset="images/menu_icon.webp" type="image/webp" />
+                <img src="images/menu_icon.png" alt="Menu Icon" />
+              </picture>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
 
     <section class="hero">
-      <img class="desktop" src="images/Hero_Desktop.jpg" />
-      <img class="mobile" src="images/Hero_Mobile.jpg" />
-      <img class="tablet" src="images/Hero_Tablet.jpg" />
+      <!-- WebP 최적화된 반응형 이미지 -->
+      <picture>
+        <!-- Desktop -->
+        <source
+          media="(min-width: 961px)"
+          srcset="images/Hero_Desktop.webp"
+          type="image/webp" />
+        <source
+          media="(min-width: 961px)"
+          srcset="images/Hero_Desktop.jpg"
+          type="image/jpeg" />
+
+        <!-- Tablet -->
+        <source
+          media="(min-width: 577px) and (max-width: 960px)"
+          srcset="images/Hero_Tablet.webp"
+          type="image/webp" />
+        <source
+          media="(min-width: 577px) and (max-width: 960px)"
+          srcset="images/Hero_Tablet.jpg"
+          type="image/jpeg" />
+
+        <!-- Mobile -->
+        <source
+          media="(max-width: 576px)"
+          srcset="images/Hero_Mobile.webp"
+          type="image/webp" />
+        <source
+          media="(max-width: 576px)"
+          srcset="images/Hero_Mobile.jpg"
+          type="image/jpeg" />
+
+        <!-- Fallback -->
+        <img
+          class="desktop"
+          src="images/Hero_Desktop.jpg"
+          alt="Discover our line of VR Headsets" />
+      </picture>
 
       <div class="hero-content">
         <div class="container">
@@ -103,7 +143,10 @@
         <div class="container">
           <div class="product new">
             <div class="product-picture">
-              <img src="images/vr1.jpg" alt="product: Penom Case" />
+              <picture>
+                <source srcset="images/vr1.webp" type="image/webp" />
+                <img src="images/vr1.jpg" alt="product: Apple Headset" />
+              </picture>
             </div>
             <div class="product-info">
               <h5 class="categories">Headsets, Apple</h5>
@@ -117,9 +160,10 @@
 
           <div class="product new">
             <div class="product-picture">
-              <img
-                src="images/vr2.jpg"
-                alt="product: Noise Cancelling Headphone" />
+              <picture>
+                <source srcset="images/vr2.webp" type="image/webp" />
+                <img src="images/vr2.jpg" alt="product: Playstation Headset" />
+              </picture>
             </div>
             <div class="product-info">
               <h5 class="categories">Headsets, PS</h5>
@@ -133,9 +177,10 @@
 
           <div class="product">
             <div class="product-picture">
-              <img
-                src="images/vr3.jpg"
-                alt="product: Canon Digital SLR EOS Rebel T6" />
+              <picture>
+                <source srcset="images/vr3.webp" type="image/webp" />
+                <img src="images/vr3.jpg" alt="product: Oculus Headset" />
+              </picture>
             </div>
             <div class="product-info">
               <h5 class="categories">Headsets, Oculus</h5>
