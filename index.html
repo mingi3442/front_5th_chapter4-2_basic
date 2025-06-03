@@ -35,6 +35,7 @@
       as="image"
       media="(min-width: 961px)" />
 
+    <!-- 폰트 최적화 - 안전한 방법 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -307,8 +308,15 @@
     <section class="newsletter" id="newsletter-section">
       <h3>Newsletter Signup</h3>
       <p>Subscribe now and don't miss a single deal!</p>
-      <form>
-        <input type="email" name="email" placeholder="Your email..." />
+      <form method="POST" action="#" autocomplete="on">
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email..."
+          required
+          autocomplete="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          aria-label="Email address for newsletter subscription" />
         <button type="submit">Subscribe</button>
       </form>
     </section>
