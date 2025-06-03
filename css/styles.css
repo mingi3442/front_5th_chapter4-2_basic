@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: "Heebo";
+  font-family: "Heebo", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   padding-top: 80px;
 }
 
@@ -132,6 +133,7 @@ section.hero picture img {
   margin-bottom: 16px;
   margin-top: 0;
   font-weight: normal;
+  min-height: 112px; /* CLS 방지: 폰트 로딩 전 최소 높이 확보 */
 }
 
 .hero-content p {
@@ -225,23 +227,29 @@ section.best-sellers .product-slider .product {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  min-height: 450px; /* CLS 방지: 제품 카드 최소 높이 고정 */
 }
 
+/* WebP 지원을 위한 제품 이미지 picture 태그 스타일 */
 section.best-sellers .product-slider .product picture {
   display: block;
   width: 100%;
 }
 
 section.best-sellers .product-slider .product picture img {
-  max-width: 40%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain; /* 이미지 비율 유지 */
 }
 
+/* CLS 방지: 제품 이미지 컨테이너 고정 높이 */
 section.best-sellers .product-slider .product .product-picture {
-  height: 100%;
+  height: 200px; /* 고정 높이 설정 */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 */
 }
 
 section.best-sellers .product-slider .product.new::before {
@@ -261,7 +269,11 @@ section.best-sellers .product-slider .product.new::before {
 }
 
 section.best-sellers .product-slider .product .product-info {
-  margin-top: 50px;
+  margin-top: 20px; /* 이미지와 정보 사이 간격 줄임 */
+  flex-grow: 1; /* 남은 공간을 차지하도록 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 section.best-sellers .product-slider .product .product-info .categories {
@@ -282,6 +294,7 @@ section.best-sellers .product-slider .product .product-info .title {
   margin-bottom: 6px;
   font-weight: normal;
   margin-top: 0;
+  min-height: 52px; /* CLS 방지: 제목 최소 높이 */
 }
 
 section.best-sellers .product-slider .product .product-info .price {
@@ -291,6 +304,7 @@ section.best-sellers .product-slider .product .product-info .price {
   line-height: 30px;
   margin-bottom: 16px;
   margin-top: 0;
+  min-height: 60px; /* CLS 방지: 가격 영역 최소 높이 */
 }
 
 section.best-sellers
@@ -328,12 +342,23 @@ section.best-sellers .product-slider .product .product-info button {
   letter-spacing: 0.4px;
   line-height: 24px;
   cursor: pointer;
+  margin-top: auto; /* 버튼을 하단에 고정 */
 }
 
 section.best-sellers .product-slider .product:hover .product-info button {
   background-color: #33c6dd;
   border: 1px solid #33c6dd;
   color: white;
+}
+
+/* CLS 방지: 동적 제품 영역 최소 높이 설정 */
+#all-products .container {
+  min-height: 500px; /* API로 로드되는 제품들을 위한 최소 높이 */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 
 section.newsletter {
@@ -375,7 +400,7 @@ section.newsletter form input {
   border: 1px solid #3e3e3e;
   border-right: none;
   color: #3e3e3e;
-  font-family: Heebo;
+  font-family: Heebo, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   letter-spacing: 0.35px;
   line-height: 21px;
@@ -456,6 +481,12 @@ footer .copyright-text {
   line-height: 22px;
 }
 
+/* CLS 방지를 위한 일반적인 이미지 스타일 */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
 @media screen and (max-width: 960px) {
   .container {
     max-width: 92%;
@@ -481,6 +512,7 @@ footer .copyright-text {
     font-size: 40px;
     letter-spacing: 1px;
     line-height: 46px;
+    min-height: 92px; /* 태블릿용 최소 높이 조정 */
   }
 
   .hero-content p {
@@ -519,6 +551,11 @@ footer .copyright-text {
   section.best-sellers .product-slider .product {
     min-width: 220px;
     margin: 17px 8px;
+    min-height: 380px; /* 태블릿용 최소 높이 조정 */
+  }
+
+  section.best-sellers .product-slider .product .product-picture {
+    height: 160px; /* 태블릿용 이미지 컨테이너 높이 조정 */
   }
 
   section.best-sellers .product-slider .product .product-info .categories {
@@ -533,12 +570,14 @@ footer .copyright-text {
     letter-spacing: 0.5px;
     line-height: 18px;
     margin-bottom: 8px;
+    min-height: 36px; /* 태블릿용 제목 최소 높이 */
   }
 
   section.best-sellers .product-slider .product .product-info .price {
     font-size: 16px;
     letter-spacing: 0.4px;
     line-height: 30px;
+    min-height: 45px; /* 태블릿용 가격 최소 높이 */
   }
 
   section.best-sellers
@@ -595,6 +634,10 @@ footer .copyright-text {
   footer .bottom-nav .container {
     max-width: 90%;
   }
+
+  #all-products .container {
+    min-height: 400px; /* 태블릿용 동적 영역 최소 높이 */
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -624,6 +667,7 @@ footer .copyright-text {
     text-align: center;
     margin-bottom: 32px;
     margin-top: 27px;
+    min-height: 76px; /* 모바일용 최소 높이 조정 */
   }
 
   .hero-content p {
@@ -645,6 +689,11 @@ footer .copyright-text {
   section.best-sellers .product-slider .product {
     width: 82%;
     max-width: 360px;
+    min-height: 420px; /* 모바일용 최소 높이 */
+  }
+
+  section.best-sellers .product-slider .product .product-picture {
+    height: 180px; /* 모바일용 이미지 컨테이너 높이 */
   }
 
   section.best-sellers h1 {
@@ -671,12 +720,14 @@ footer .copyright-text {
     font-size: 14px;
     letter-spacing: 0.54px;
     line-height: 18px;
+    min-height: 36px; /* 모바일용 제목 최소 높이 */
   }
 
   section.best-sellers .product-slider .product .product-info .price {
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.5px;
+    min-height: 50px; /* 모바일용 가격 최소 높이 */
   }
 
   section.best-sellers
@@ -723,5 +774,9 @@ footer .copyright-text {
 
   footer .bottom-nav ul:last-of-type {
     margin-bottom: 0;
+  }
+
+  #all-products .container {
+    min-height: 300px; /* 모바일용 동적 영역 최소 높이 */
   }
 }
