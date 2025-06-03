@@ -43,7 +43,7 @@
       rel="stylesheet" />
 
     <link rel="stylesheet" href="/css/styles.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="/css/slick.css"/> -->
+
     <!-- Google Tag Manager 최적화 - 지연 로드 -->
     <script>
       // GTM을 지연 로드하여 초기 렌더링 성능 개선
@@ -137,10 +137,12 @@
                 <source srcset="images/menu_icon.webp" type="image/webp" />
                 <img
                   src="images/menu_icon.png"
-                  alt="Menu Icon"
+                  alt="Open navigation menu"
                   width="24"
                   height="24"
-                  style="aspect-ratio: 1/1" />
+                  style="aspect-ratio: 24/24; object-fit: contain"
+                  loading="lazy"
+                  decoding="async" />
               </picture>
             </li>
           </ul>
@@ -191,7 +193,7 @@
         <img
           class="desktop"
           src="images/Hero_Desktop.jpg"
-          alt="Discover our line of VR Headsets"
+          alt="Immersive VR experience showcasing cutting-edge virtual reality technology with futuristic digital interface"
           width="1440"
           height="600"
           style="aspect-ratio: 1440/600; object-fit: cover"
@@ -218,19 +220,20 @@
       <hr />
       <div class="product-slider">
         <div class="container">
+          <!-- 🔧 수정: Apple VR 제품 -->
           <div class="product new">
             <div class="product-picture">
               <picture>
                 <source srcset="images/vr1.webp" type="image/webp" />
                 <img
                   src="images/vr1.jpg"
-                  alt="product: Apple Headset"
+                  alt="Apple VR Headset with premium blue strap design - Advanced virtual reality device featuring cutting-edge optics and ergonomic comfort"
                   width="150"
                   height="150"
                   style="aspect-ratio: 1/1; object-fit: contain"
                   loading="lazy"
                   decoding="async"
-                  sizes="(max-width: 576px) 150px, (max-width: 960px) 120px, 150px" />
+                  sizes="(max-width: 576px) 140px, (max-width: 960px) 120px, 150px" />
               </picture>
             </div>
             <div class="product-info">
@@ -243,19 +246,20 @@
             </div>
           </div>
 
+          <!-- 🔧 수정: PlayStation VR 제품 -->
           <div class="product new">
             <div class="product-picture">
               <picture>
                 <source srcset="images/vr2.webp" type="image/webp" />
                 <img
                   src="images/vr2.jpg"
-                  alt="product: Playstation Headset"
+                  alt="PlayStation VR Headset with integrated audio system - Gaming-focused virtual reality headset optimized for immersive console gaming experiences"
                   width="150"
                   height="150"
                   style="aspect-ratio: 1/1; object-fit: contain"
                   loading="lazy"
                   decoding="async"
-                  sizes="(max-width: 576px) 150px, (max-width: 960px) 120px, 150px" />
+                  sizes="(max-width: 576px) 140px, (max-width: 960px) 120px, 150px" />
               </picture>
             </div>
             <div class="product-info">
@@ -274,13 +278,13 @@
                 <source srcset="images/vr3.webp" type="image/webp" />
                 <img
                   src="images/vr3.jpg"
-                  alt="product: Oculus Headset"
+                  alt="Oculus VR Headset in sleek black finish - Professional-grade virtual reality device with advanced spatial tracking and high-resolution display"
                   width="150"
                   height="150"
                   style="aspect-ratio: 1/1; object-fit: contain"
                   loading="lazy"
                   decoding="async"
-                  sizes="(max-width: 576px) 150px, (max-width: 960px) 120px, 150px" />
+                  sizes="(max-width: 576px) 140px, (max-width: 960px) 120px, 150px" />
               </picture>
             </div>
             <div class="product-info">
