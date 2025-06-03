@@ -5,42 +5,103 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - Tech Shop</title>
+
+    <!-- DNS 프리페치로 연결 시간 단축 -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.freeprivacypolicy.com" />
+
+    <!-- LCP 개선을 위한 중요 이미지 프리로드 -->
     <link
-      href="https://fonts.googleapis.com/css?family=Heebo:300,400,600,700&display=swap"
+      rel="preload"
+      href="images/Hero_Mobile.webp"
+      as="image"
+      media="(max-width: 576px)" />
+    <link
+      rel="preload"
+      href="images/Hero_Tablet.webp"
+      as="image"
+      media="(min-width: 577px) and (max-width: 960px)" />
+    <link
+      rel="preload"
+      href="images/Hero_Desktop.webp"
+      as="image"
+      media="(min-width: 961px)" />
+
+    <!-- WebP 미지원 브라우저용 폴백 프리로드 -->
+    <link
+      rel="preload"
+      href="images/Hero_Desktop.jpg"
+      as="image"
+      media="(min-width: 961px)" />
+
+    <!-- 폰트 최적화 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700&display=optional"
       rel="stylesheet" />
+
     <link rel="stylesheet" href="/css/styles.css" />
     <!-- <link rel="stylesheet" type="text/css" href="/css/slick.css"/> -->
-    <!-- Google Tag Manager -->
+    <!-- Google Tag Manager 최적화 - 지연 로드 -->
     <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-PKK35GL5");
+      // GTM을 지연 로드하여 초기 렌더링 성능 개선
+      function loadGTM() {
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-PKK35GL5");
+      }
+
+      // 사용자 상호작용 후 또는 3초 후에 GTM 로드
+      if (document.readyState === "complete") {
+        setTimeout(loadGTM, 3000);
+      } else {
+        window.addEventListener("load", () => setTimeout(loadGTM, 3000));
+      }
+
+      // 사용자가 상호작용하면 즉시 로드
+      ["click", "scroll", "keydown", "touchstart"].forEach((event) => {
+        document.addEventListener(event, loadGTM, {
+          once: true,
+          passive: true,
+        });
+      });
     </script>
     <!-- End Google Tag Manager -->
 
-    <!-- Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
-    <script
-      type="text/javascript"
-      src="//www.freeprivacypolicy.com/public/cookie-consent/4.1.0/cookie-consent.js"
-      charset="UTF-8"></script>
-    <script type="text/javascript" charset="UTF-8">
-      cookieconsent.run({
-        notice_banner_type: "simple",
-        consent_type: "express",
-        palette: "light",
-        language: "en",
-        page_load_consent_levels: ["strictly-necessary"],
-        notice_banner_reject_button_hide: false,
-        preferences_center_close_button_hide: false,
-        page_refresh_confirmation_buttons: false,
-        website_name: "Performance Course",
+    <!-- Cookie Consent 지연 로드 -->
+    <script>
+      // Cookie Consent를 지연 로드하여 초기 성능 개선
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.src =
+            "//www.freeprivacypolicy.com/public/cookie-consent/4.1.0/cookie-consent.js";
+          script.charset = "UTF-8";
+          script.onload = function () {
+            cookieconsent.run({
+              notice_banner_type: "simple",
+              consent_type: "express",
+              palette: "light",
+              language: "en",
+              page_load_consent_levels: ["strictly-necessary"],
+              notice_banner_reject_button_hide: false,
+              preferences_center_close_button_hide: false,
+              page_refresh_confirmation_buttons: false,
+              website_name: "Performance Course",
+            });
+          };
+          document.head.appendChild(script);
+        }, 5000); // 5초 후 로드
       });
     </script>
   </head>
@@ -127,7 +188,9 @@
           alt="Discover our line of VR Headsets"
           width="1440"
           height="600"
-          style="aspect-ratio: 1440/600; object-fit: cover" />
+          style="aspect-ratio: 1440/600; object-fit: cover"
+          fetchpriority="high"
+          decoding="async" />
       </picture>
 
       <div class="hero-content">
@@ -284,7 +347,7 @@
 
     <a href="#" id="open_preferences_center">Update cookies preferences</a>
 
-    <script type="text/javascript" src="/js/main.js"></script>
-    <script type="text/javascript" src="/js/products.js"></script>
+    <script type="text/javascript" src="/js/main.js" defer></script>
+    <script type="text/javascript" src="/js/products.js" defer></script>
   </body>
 </html>
